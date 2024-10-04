@@ -75,7 +75,7 @@ public class EditPersonVM : INotifyPropertyChanged
     {
         get
         {
-            return _clickOk ?? (_clickOk = new CommandHandler(() => FinishEdit(), () => CanExecute));
+            return _clickOk ?? (_clickOk = new CommandHandler(() => FinishEdit(), () => CanExecuteSave));
         }
     }
 
@@ -83,7 +83,7 @@ public class EditPersonVM : INotifyPropertyChanged
     {
         get
         {
-            return _clickCancel ?? (_clickCancel = new CommandHandler(() => CancelEdit(), () => CanExecute));
+            return _clickCancel ?? (_clickCancel = new CommandHandler(() => CancelEdit(), () => true));
         }
     }
 
@@ -97,11 +97,21 @@ public class EditPersonVM : INotifyPropertyChanged
         OnPersonHasEdited?.Invoke(Person);
     }
 
-    public bool CanExecute
+    public bool CanExecuteSave
     {
         get
         {
-            return true;
+            if (Person != null &&
+                Person.FirstName.Length > 0 &&
+                Person.LastName.Length > 0 &&
+                Person.ThirdName.Length > 0 &&
+                Person.PhoneNumber.Length > 0 &&
+                Person.PassportSeries.Length > 0 &&
+                Person.PassportNumber.Length > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 
