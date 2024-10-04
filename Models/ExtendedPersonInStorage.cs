@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task.Interface;
+﻿using Task.Interface;
 
 namespace Task.Models
 {
@@ -17,7 +12,6 @@ namespace Task.Models
         protected ChangeType _changeType;
         protected Role _changeRole;
 
-#pragma warning disable CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
         virtual public string FirstName { 
             get { return _firstName; } 
             set 
@@ -66,7 +60,6 @@ namespace Task.Models
                 Modified("PassportNumber");
             }
         }
-#pragma warning restore CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
 
         public DateTime TimeModified{ get { return _timeModified; } set { _timeModified = value; } }
         public List<String> ChangedFields { get { return _changedFields ?? new List<string>(); } set { _changedFields = value; } }

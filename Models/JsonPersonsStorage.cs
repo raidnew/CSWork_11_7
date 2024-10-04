@@ -1,14 +1,8 @@
-﻿using System.Data;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
+﻿using System.Text.Json;
 using Task.Interface;
 using Task.Common;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Collections.Specialized;
-using System.Diagnostics;
 
 namespace Task.Models;
 

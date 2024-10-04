@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.DirectoryServices;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Task.Common;
 using Task.Interface;
@@ -66,8 +58,6 @@ public class PersonsListVM : INotifyPropertyChanged
     {
         if (e.PropertyName == nameof(Persons))
             Persons = _model.Persons;
-
-        //SortPersons();
     }
 
     public IPerson SelectedPerson { get; set; }

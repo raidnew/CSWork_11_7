@@ -10,7 +10,6 @@ namespace Task.Models
     public class PersonInStorage : PersonBase
     {
 
-#pragma warning disable CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
         public int ID { get { return _id; } set { _id = value; } }
 
         public PersonInStorage() : base() { }
@@ -22,7 +21,6 @@ namespace Task.Models
         public PersonInStorage(int id, string firstName, string lastName, string thirdName, string phoneNumber, string passportSeries, string passportNumber) :
             base(id, firstName, lastName, thirdName, phoneNumber, passportSeries, passportNumber)
         { }
-#pragma warning restore CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
 
         virtual public void Clone(IPerson person)
         {
