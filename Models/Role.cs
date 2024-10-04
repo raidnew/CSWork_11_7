@@ -14,6 +14,11 @@ public class RoleAccess
         return CurrentRole.Current == Role.Manager;
     }
 
+    public static bool RemoveAvailable()
+    {
+        return CurrentRole.Current == Role.Manager;
+    }
+
     public static AccessMode FirstName()
     {
         switch (CurrentRole.Current)

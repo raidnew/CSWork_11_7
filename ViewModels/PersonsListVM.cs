@@ -93,41 +93,6 @@ public class PersonsListVM : INotifyPropertyChanged
         }
     }
 
-    public void SortAction(object field)
-    {
-        IOrderedEnumerable<IPerson> hasSortedList = null;
-
-        if (field == _currentSortField)
-            _currentSortDirection = !_currentSortDirection;
-
-        _currentSortField = (string)field;
-
-        switch (field){
-            case "FirstName":
-                if (_currentSortDirection)
-                    hasSortedList = Persons.OrderBy(person => person.FirstName);
-                else
-                    hasSortedList = Persons.OrderByDescending(person => person.FirstName);
-                break;
-            case "LastName":
-                if (_currentSortDirection)
-                    hasSortedList = Persons.OrderBy(person => person.LastName);
-                else
-                    hasSortedList = Persons.OrderByDescending(person => person.LastName);
-                Persons.OrderBy(person => person.LastName);
-                break;
-            case "ThirdName":
-                if (_currentSortDirection)
-                    hasSortedList = Persons.OrderBy(person => person.ThirdName);
-                else
-                    hasSortedList = Persons.OrderByDescending(person => person.ThirdName);
-                break;
-        }
-
-        if (hasSortedList != null)
-            Persons = new ObservableCollection<IPerson>(hasSortedList);
-    }
-
     private bool CanEditPerson
     {
         get
@@ -140,7 +105,7 @@ public class PersonsListVM : INotifyPropertyChanged
     {
         get
         {
-            return SelectedIndex >= 0 && SelectedIndex <= _persons?.Count;
+            return RoleAccess.RemoveAvailable() && SelectedIndex >= 0 && SelectedIndex <= _persons?.Count;
         }
     }
 
@@ -193,4 +158,39 @@ public class PersonsListVM : INotifyPropertyChanged
             PropertyChanged(this, new PropertyChangedEventArgs(prop));
     }
 
+    private void SortAction(object field)
+    {
+        IOrderedEnumerable<IPerson> hasSortedList = null;
+
+        if (field == _currentSortField)
+            _currentSortDirection = !_currentSortDirection;
+
+        _currentSortField = (string)field;
+
+        switch (field)
+        {
+            case "FirstName":
+                if (_currentSortDirection)
+                    hasSortedList = Persons.OrderBy(person => person.FirstName);
+                else
+                    hasSortedList = Persons.OrderByDescending(person => person.FirstName);
+                break;
+            case "LastName":
+                if (_currentSortDirection)
+                    hasSortedList = Persons.OrderBy(person => person.LastName);
+                else
+                    hasSortedList = Persons.OrderByDescending(person => person.LastName);
+                Persons.OrderBy(person => person.LastName);
+                break;
+            case "ThirdName":
+                if (_currentSortDirection)
+                    hasSortedList = Persons.OrderBy(person => person.ThirdName);
+                else
+                    hasSortedList = Persons.OrderByDescending(person => person.ThirdName);
+                break;
+        }
+
+        if (hasSortedList != null)
+            Persons = new ObservableCollection<IPerson>(hasSortedList);
+    }
 }
