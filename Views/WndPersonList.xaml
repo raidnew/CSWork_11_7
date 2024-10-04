@@ -1,0 +1,47 @@
+﻿<Window x:Class="Task.WndPersonsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Task.ViewModel"
+        mc:Ignorable="d"
+        Title="Persons List" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModel:PersonsListVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" ItemsSource="{Binding Persons}" SelectedIndex="{Binding SelectedIndex}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding ID}" Header="ID" Width="Auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="Auto">
+                        <GridViewColumnHeader Content="First Name" Command="{Binding ClickSortPersons}" CommandParameter="FirstName" />
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="Auto">
+                        <GridViewColumnHeader Content="Last Name" Command="{Binding ClickSortPersons}" CommandParameter="LastName" />
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding ThirdName}" Width="Auto">
+                        <GridViewColumnHeader Content="Third Name" Command="{Binding ClickSortPersons}" CommandParameter="ThirdName" />
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Phone" Width="Auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PassportSeries}" Header="Passort Series" Width="Auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding PassportNumber}" Header="Passport Number" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Command="{Binding ClickAddPerson}">Add</Button>
+            <Button Grid.Row="1" Command="{Binding ClickEditPerson}">Edit</Button>
+            <Button Grid.Row="2" Command="{Binding ClickRemovePerson}">Remove</Button>
+        </Grid>
+    </Grid>
+</Window>

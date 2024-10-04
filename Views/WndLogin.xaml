@@ -1,0 +1,36 @@
+﻿<Window x:Class="Task.WndLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Task.ViewModel"
+        mc:Ignorable="d"
+        Title="WndLogin" Height="450" Width="400">
+    <Window.DataContext>
+        <viewModel:LoginVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" FontSize="25">Login</Label>
+        <Border Grid.Row="1" Margin="140 5 10 5" BorderThickness="1" CornerRadius="3.2" BorderBrush="Black">
+            <TextBox Text="{Binding Login}" FontSize="25"></TextBox>
+        </Border>
+        <Label Grid.Row="3" FontSize="25">Password</Label>
+        <Border Grid.Row="3" Margin="140 5 10 5" BorderThickness="1" CornerRadius="3.2" BorderBrush="Black">
+            <TextBox Text="{Binding Password}" FontSize="25"></TextBox>
+        </Border>
+        <Label Grid.Row="5" FontSize="25">Role</Label>
+        <ComboBox Grid.Row="5" Margin="140 5 10 5" FontSize="25" ItemsSource="{Binding AllowRoles}" SelectedItem="{Binding CurrentRole}"/>
+
+        <Button Grid.Row="7" Margin="10 5 10 5" FontSize="25" Command="{Binding ClickLogin}">Login</Button>
+    </Grid>
+</Window>
